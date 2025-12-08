@@ -36,7 +36,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: "nginx-go-config.yaml"
+          source: "nginx-go-config.yaml, nginx-go-deployment.yaml, nginx-go-service.yaml"
           target: "/home/${{ secrets.SSH_USER }}/"
 
       # Deploy to K3s via SSH
@@ -49,11 +49,14 @@ jobs:
           script: |
             echo "Deploy Go app..."
             sudo k3s kubectl set image deployment/go-deployment go-container=lijie1xia/go-project:${{ env.IMAGE_TAG }}
-            sudo k3s kubectl rollout restart deployment/go-deployment
             sudo k3s kubectl rollout status deployment/go-deployment
   
             echo "Deploy Nginx..."
             sudo k3s kubectl apply -f /home/${{ secrets.SSH_USER }}/nginx-go-config.yaml
+            sudo k3s kubectl apply -f /home/${{ secrets.SSH_USER }}/nginx-go-deployment.yaml
+            sudo k3s kubectl apply -f /home/${{ secrets.SSH_USER }}/nginx-go-service.yaml
+            
+            echo "Waiting for Nginx Deployment rollout..."
             sudo k3s kubectl rollout restart deployment/nginx-go-deployment
             sudo k3s kubectl rollout status deployment/nginx-go-deployment
 
