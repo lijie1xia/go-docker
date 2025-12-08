@@ -1,11 +1,6 @@
 Go + Docker Demo
 一个最小可行的示例项目，演示如何将一个 Go Web 服务打包成 Docker 镜像并运行为容器。目标是完成从编写代码到构建镜像再到运行容器的完整闭环。
 
-项目结构
-.
-├─ main.go
-└─ Dockerfile
-
 构建镜像
 在项目根目录执行：
 docker build -t go-hello .
