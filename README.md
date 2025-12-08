@@ -32,3 +32,16 @@ Hello Docker + Go!!!!
 
 为什么要做这个示例
 容器化是后端与云原生方向的基础技能。能够独立完成代码编写、镜像构建和容器部署，意味着你已经具备把任意小项目快速容器化的能力，为后续部署到 Kubernetes 做铺垫。
+```
+k8s_go_test
+├─ Dockerfile
+├─ go-deployment.yaml
+├─ go-pod.yaml
+├─ go-service.yaml
+├─ main.go
+├─ nginx-go-config.yaml
+├─ nginx-go-deployment.yaml
+├─ nginx-go-service.yaml
+└─ README.md
+
+```
