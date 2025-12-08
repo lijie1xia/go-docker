@@ -56,3 +56,4 @@ jobs:
             sudo k3s kubectl apply -f /home/${{ secrets.SSH_USER }}/nginx-go-config.yaml
             sudo k3s kubectl rollout restart deployment/nginx-go-deployment
             sudo k3s kubectl rollout status deployment/nginx-go-deployment
+
